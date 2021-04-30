@@ -1,9 +1,10 @@
 const Discord = require('discord.js')
 const client = new Discord.Client({ partials: ['MESSAGE', 'CHANNEL', 'REACTION'] });
-const db = require('quick.db');
+const { Database } = require("quickmongo");
 const config = require('./config.json')
 const discord = require('discord.js')
-const emotfe = require('./emojis.json')  
+const emotfe = require('./emojis.json')
+const db = new Database(config.database);  
  const prefix = config.prefix;
  db.on("ready", () => {
     console.log("Database connected!");  
@@ -170,3 +171,6 @@ client.on('messageReactionRemove', async (reaction, user) => {
 
  
 client.login(config.token)
+
+
+ 
